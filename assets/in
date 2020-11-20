@@ -84,13 +84,13 @@ if test "$depth" -gt 0 2> /dev/null; then
 fi
 
 tagflag=""
-if [ "$fetch_tags" == "false" ] ; then
+if [ "$fetch_tags" == false ] ; then
   tagflag="--no-tags"
-elif [ -n "$tag_filter" ] || [ -n "$tag_regex" ] || [ "$fetch_tags" == "true" ] ; then
+elif [ -n "$tag_filter" ] || [ -n "$tag_regex" ] || [ "$fetch_tags" == true ] ; then
   tagflag="--tags"
 fi
 
-if [ "$disable_git_lfs" == "true" ]; then
+if [ "$disable_git_lfs" == true ]; then
   # skip the fetching of LFS objects for all following git commands
   export GIT_LFS_SKIP_SMUDGE=1
 fi
@@ -140,10 +140,10 @@ fi
 
 
 submodule_parameters=""
-if [ "$submodule_remote" != "false" ]; then
+if [ "$submodule_remote" != false ]; then
   submodule_parameters+=" --remote "
 fi
-if [ "$submodule_recursive" != "false" ]; then
+if [ "$submodule_recursive" != false ]; then
   submodule_parameters+=" --recursive "
 fi
 
@@ -214,7 +214,7 @@ echo "$(git describe ${describe_ref_options})" > .git/describe_ref
 
 metadata=$(git_metadata)
 
-if [ "$clean_tags" == "true" ]; then
+if [ "$clean_tags" == true ]; then
   git tag | xargs git tag -d
 fi
 
